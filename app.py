@@ -45,7 +45,7 @@ def encrypt_resume_ep():
     return send_file(
         io.BytesIO(encrypt_resume(new_key)),
         attachment_filename="jwhite_signed_resume.pdf.gpg",
-        as_attachment=True
+        as_attachment=True,
     )
 
 

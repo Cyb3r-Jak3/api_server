@@ -36,4 +36,4 @@ jobs:
     - name: Lint with bandit
       run: bandit app.py
     - name: Lint with Python Black
-      run: black --check app.py --line-length 80
+      run: black --check app.py --line-length 80 --diff
