@@ -36,7 +36,7 @@ def home():
     return redirect("https://www.jwhite.network")
 
 
-@app.route("/encrypted_resume")
+@app.route("/encrypted_resume", methods=["GET", "POST"])
 def encrypt_resume_ep():
     """Encrypts my resume with any public key sent"""
     if request.method == "GET":
