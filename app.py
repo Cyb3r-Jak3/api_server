@@ -54,5 +54,5 @@ def encrypt_resume_ep():
     )
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app.run(port=5001)
