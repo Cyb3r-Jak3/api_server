@@ -35,16 +35,16 @@ def home():
     return redirect("https://www.jwhite.network")
 
 
-@app.route("/encrypted_resumse", methods=["POST"])
-def encrypt_resumse():
-    """Encrypts my resumse with any public key sent"""
+@app.route("/encrypted_resume", methods=["POST"])
+def encrypt_resume_ep():
+    """Encrypts my resume with any public key sent"""
     try:
         new_key = request.files["file"]
     except KeyError:
         return "There was no file in the request", 400
     return send_file(
         io.BytesIO(encrypt_resume(new_key)),
-        attachment_filename="jwhite_signed_resumse.gpg",
+        attachment_filename="jwhite_signed_resume.gpg",
     )
 
 

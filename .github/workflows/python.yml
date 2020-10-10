@@ -1,0 +1,25 @@
+name: Python Testing
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        pip install -U pip
+        pip install -r requirements-dev.txt
+    - name: Lint with Flake8
+      run: flake8 app.py --count --show-source --statistics
+    - name: Lint with PyLint
+      run: pylint app.py
+    - name: Lint with bandit
+      run: bandit app.py
+    - name: Lint with Python Black
+      run: black --check app.py --line-length 80
