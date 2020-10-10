@@ -41,6 +41,8 @@ def encrypt_resume_ep():
     """Encrypts my resume with any public key sent"""
     if request.method == "GET":
         return redirect("https://www.jwhite.network")
+    print(request.form)
+    print(request.files)
     try:
         new_key = request.files["key"]
     except KeyError:
