@@ -16,7 +16,7 @@ if not os.path.exists("resume.pdf"):
         new_resume.write(r.content)
 
 app = Flask(__name__)
-CORS(app, origins=["*.jwhite.network"])
+CORS(app, origins=["jwhite.network"])
 
 
 def encrypt_resume(file):
@@ -39,14 +39,15 @@ def home():
 def encrypt_resume_ep():
     """Encrypts my resume with any public key sent"""
     try:
-        new_key = request.files["file"]
+        new_key = request.files["key"]
     except KeyError:
         return "There was no file in the request", 400
     return send_file(
         io.BytesIO(encrypt_resume(new_key)),
-        attachment_filename="jwhite_signed_resume.gpg",
+        attachment_filename="jwhite_signed_resume.pdf.gpg",
+        as_attachment=True
     )
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5001)
