@@ -1,9 +1,17 @@
-name: Python Testing
+name: Testing
 
 on: [push]
 
 jobs:
-  Lint:
+  Docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check build
+      run: docker build . --tag api-server
+    - name: Inspect
+      run: docker inspect api-server
+  Python:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
