@@ -26,6 +26,7 @@ def encrypt_resume(file):
         encrypted_data = gpg.encrypt_file(
             resumse, imported_key, always_trust=True
         )
+    gpg.delete_keys(imported_key)
     return encrypted_data.data
 
 

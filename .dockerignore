@@ -5,3 +5,7 @@ __pycache__/
 .git
 resume.pdf
 .github
+README.md
+LICENSE
+heroku.yml
+requirements-dev.txt
