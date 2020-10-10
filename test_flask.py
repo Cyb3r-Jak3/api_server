@@ -1,18 +1,18 @@
-"""Tests for api server"""
+"""Tests for api server."""
 import requests
 import io
 from app import app
 
 
 def test_index_redirect():
-    """Checks getting index redirects to main site"""
+    """Checks getting index redirects to main site."""
     tester = app.test_client()
     response = tester.get("/")
     assert response.status_code == 302
 
 
 def test_encrypt_resume_misc():
-    """Tests misc features of the encrypt resume EP"""
+    """Tests misc features of the encrypt resume EP."""
     tester = app.test_client()
     redirect = tester.get("/encrypted_resume")
     assert redirect.status_code == 302
@@ -21,7 +21,7 @@ def test_encrypt_resume_misc():
 
 
 def test_encrypt_resume():
-    """Tests main section of the encrypt resume EP"""
+    """Tests main section of the encrypt resume EP."""
     tester = app.test_client()
     download = requests.get(
             "https://portfolio.jwhite.network/keys/WebsitePublic.asc"

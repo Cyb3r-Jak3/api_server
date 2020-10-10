@@ -41,4 +41,11 @@ jobs:
     - name: Lint with Python Black
       run: black --check app.py --line-length 80 --diff
     - name: Run Pytests
-      run: py.test --cov app test_flask.py -vv
+      run: |
+        py.test --cov app test_flask.py -vv
+        coverage xml
+    - name: Run codacy-coverage-reporter
+      uses: codacy/codacy-coverage-reporter-action@master
+      with:
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        coverage-reports: coverage.xml
