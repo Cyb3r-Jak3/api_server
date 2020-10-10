@@ -36,9 +36,11 @@ def home():
     return redirect("https://www.jwhite.network")
 
 
-@app.route("/encrypted_resume", methods=["POST"])
+@app.route("/encrypted_resume")
 def encrypt_resume_ep():
     """Encrypts my resume with any public key sent"""
+    if request.method == "GET":
+        return redirect("https://www.jwhite.network")
     try:
         new_key = request.files["key"]
     except KeyError:

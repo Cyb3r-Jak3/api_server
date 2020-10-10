@@ -8,4 +8,4 @@ This is the backend for my sites where I have all my api ends points for web int
 
 #### encrypted_resume
 
-All this endpoint does is return my resumse that has been encrypted with users updated public key.
+All this endpoint does is return my resumse that has been encrypted with users uploaded public key.
