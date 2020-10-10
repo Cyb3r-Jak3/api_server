@@ -1,4 +1,4 @@
-"""Main Web documention"""
+"""Main Web runner thing."""
 import io
 import os
 from flask import Flask, request, redirect, send_file
@@ -20,7 +20,7 @@ CORS(app, origins=["jwhite.network"])
 
 
 def encrypt_resume(file):
-    """Encrypts my resumse with the given key"""
+    """Encrypts my resumse with the given key."""
     imported_key = gpg.import_keys(file.read()).fingerprints[0]
     with open("resume.pdf", mode="rb") as resumse:
         encrypted_data = gpg.encrypt_file(
@@ -32,15 +32,17 @@ def encrypt_resume(file):
 
 @app.route("/")
 def home():
-    """Redirects anyone to my website"""
+    """Redirects anyone to my website."""
     return redirect("https://www.jwhite.network")
 
 
 @app.route("/encrypted_resume", methods=["GET", "POST"])
 def encrypt_resume_ep():
-    """Encrypts my resume with any public key sent"""
+    """Encrypts my resume with any public key sent."""
     if request.method == "GET":
         return redirect("https://www.jwhite.network")
+    print(request.form)
+    print(request.files)
     try:
         new_key = request.files["key"]
     except KeyError:
@@ -52,5 +54,5 @@ def encrypt_resume_ep():
     )
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app.run(port=5001)

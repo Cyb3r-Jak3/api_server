@@ -3,3 +3,6 @@ black
 pylint
 flake8
 bandit
+pytest
+pytest-cov
+coverage
