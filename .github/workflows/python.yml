@@ -3,7 +3,7 @@ name: Python Testing
 on: [push]
 
 jobs:
-  test:
+  Lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -11,6 +11,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
+    - uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt', '**/requirements-dev.txts') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - name: Install dependencies
       run: |
         pip install -U pip

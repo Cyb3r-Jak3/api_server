@@ -3,9 +3,11 @@ name: Docker Check
 on: [push]
 
 jobs:
-    test:
+    Build:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
         - name: Check build
-          run: docker build .
+          run: docker build . --tag api-server
+        - name: Inspect
+          run: docker inspect api-server
