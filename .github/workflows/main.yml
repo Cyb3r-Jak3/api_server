@@ -13,6 +13,9 @@ jobs:
       run: docker build . --tag docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
     - name: Inspect
       run: docker inspect docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+    - name: Push
+      run: docker push docker.pkg.github.com/docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+
 
   Python:
     runs-on: ubuntu-latest
