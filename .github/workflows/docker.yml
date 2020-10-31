@@ -1,0 +1,26 @@
+name: Docker Push
+
+on:
+  push:
+    branches:
+      master
+
+
+jobs:
+    Docker:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Docker for GitHub
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
+
+      - name: Build API Server docker
+        run: docker build . --tag docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+
+      - name: Inspect
+        run: docker inspect docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+
+      - name: Push
+        run: docker push docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+  

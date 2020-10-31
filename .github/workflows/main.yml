@@ -1,22 +1,8 @@
-name: Testing
+name: Python Tests
 
 on: [push]
 
 jobs:
-  Docker:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Docker for GitHub
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
-    - name: Build API Server docker
-      run: docker build . --tag docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
-    - name: Inspect
-      run: docker inspect docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
-    - name: Push
-      run: docker push docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
-
-
   Python:
     runs-on: ubuntu-latest
     steps:
@@ -35,18 +21,22 @@ jobs:
       run: |
         pip install -U pip
         pip install -r requirements-dev.txt
+
     - name: Lint with Flake8
       run: flake8 app.py --count --show-source --statistics
+
     - name: Lint with PyLint
       run: pylint app.py
-    - name: Lint with bandit
+
+    - name: Lint with Bandit
       run: bandit app.py
+
     - name: Lint with Python Black
       run: black --check app.py --line-length 80 --diff
+
     - name: Run Pytests
-      run: |
-        py.test --cov app test_flask.py -vv
-        coverage xml
+      run: py.test --cov app test_flask.py -vv
+
     - name: Report results to DeepSource
       run: |
         coverage xml
