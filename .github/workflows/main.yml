@@ -1,16 +1,8 @@
-name: Testing
+name: Python Tests
 
 on: [push]
 
 jobs:
-  Docker:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Check build
-      run: docker build . --tag api-server
-    - name: Inspect
-      run: docker inspect api-server
   Python:
     runs-on: ubuntu-latest
     steps:
@@ -29,11 +21,26 @@ jobs:
       run: |
         pip install -U pip
         pip install -r requirements-dev.txt
+
     - name: Lint with Flake8
       run: flake8 app.py --count --show-source --statistics
+
     - name: Lint with PyLint
       run: pylint app.py
-    - name: Lint with bandit
+
+    - name: Lint with Bandit
       run: bandit app.py
+
     - name: Lint with Python Black
       run: black --check app.py --line-length 80 --diff
+
+    - name: Run Pytests
+      run: py.test --cov app test_flask.py -vv
+
+    - name: Report results to DeepSource
+      run: |
+        coverage xml
+        curl https://deepsource.io/cli | sh
+        ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+      env: 
+        DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
