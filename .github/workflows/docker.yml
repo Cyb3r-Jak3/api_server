@@ -15,6 +15,9 @@ jobs:
       - name: Setup Docker for GitHub
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
 
+      - name: Pull Image for cache
+        run: docker pull docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+
       - name: Build API Server docker
         run: docker build . --tag docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
 
