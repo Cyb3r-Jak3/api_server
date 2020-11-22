@@ -25,6 +25,6 @@ jobs:
         run: docker inspect docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
 
       - name: Push
-        if: ${{ github.event == push }}
+        if: ${{ github.event == "push" }}
         run: docker push docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
   
