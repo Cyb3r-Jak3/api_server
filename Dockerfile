@@ -11,3 +11,5 @@ RUN apk del libffi-dev gcc musl-dev make
 COPY app.py /usr/app/
 
 WORKDIR /usr/app
+
+ENTRYPOINT [ "gunicorn", "-k", "gevent","--preload", "--bind", "0.0.0.0", "--workers", "8", "app:app" ]

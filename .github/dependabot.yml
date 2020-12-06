@@ -12,6 +12,7 @@ updates:
       prefix: "Pip Update"
     reviewers:
       - "Cyb3r-Jak3"
+
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
