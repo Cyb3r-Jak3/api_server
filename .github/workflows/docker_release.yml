@@ -15,7 +15,7 @@ jobs:
         run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       - name: Pull Image for cache
-        run: docker pull ghcr.io/cyb3r-jak/3api_server:latest
+        run: docker pull ghcr.io/cyb3r-jak3/api_server:latest
 
       - name: Build API Server docker
         run: docker build . --tag ghcr.io/cyb3r-jak3/api_server:latest --cache-from ghcr.io/cyb3r-jak3/api_server:latest
