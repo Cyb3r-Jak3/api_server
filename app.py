@@ -10,8 +10,7 @@ import requests
 gpg = gnupg.GPG(gnupghome="/tmp")
 
 if not os.path.exists("resume.pdf"):
-    RESUME_LINK = "https://www.jwhite.network/resumes/JacobWhiteResume.pdf"
-    r = requests.get(RESUME_LINK)
+    r = requests.get("https://www.jwhite.network/resumes/JacobWhiteResume.pdf")
     with open("resume.pdf", mode="wb") as new_resume:
         new_resume.write(r.content)
 
@@ -41,8 +40,6 @@ def encrypt_resume_ep():
     """Encrypts my resume with any public key sent."""
     if request.method == "GET":
         return redirect("https://www.jwhite.network")
-    print(request.form)
-    print(request.files)
     try:
         new_key = request.files["key"]
     except KeyError:

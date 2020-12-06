@@ -7,24 +7,23 @@ on:
 
 
 jobs:
-    Release:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Source For GitHub
+      run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-      - name: Setup Docker for GitHub
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
-
-      - name: Pull Image for cache
-        run: docker pull docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+      # - name: Pull Image for cache
+      #   run: docker pull docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
 
       - name: Build API Server docker
-        run: docker build . --tag docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest --cache-from docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+        run: docker build . --tag ghcr.io/cyb3r-jak3api_server:latest
 
       - name: Inspect
-        run: docker inspect docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+        run: docker inspect ghcr.io/cyb3r-jak3api_server:latest 
 
       - name: Push
         if: ${{ github.event_name == 'push' }}
-        run: docker push docker.pkg.github.com/cyb3r-jak3/api_server/api_server:latest
+        run: docker push ghcr.io/cyb3r-jak3api_server:latest 
   
