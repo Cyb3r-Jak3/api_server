@@ -1,6 +1,6 @@
 # JWhite API Server
 ---
-![Test](https://github.com/Cyb3r-Jak3/api_server/workflows/Testing/badge.svg?branch=master&event=push)
+![Build & Check](https://github.com/Cyb3r-Jak3/api_server/workflows/Build%20&%20Check/badge.svg)
 
 [![DeepSource](https://deepsource.io/gh/Cyb3r-Jak3/api_server.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/Cyb3r-Jak3/api_server/?ref=repository-badge) [![DeepSource](https://deepsource.io/gh/Cyb3r-Jak3/api_server.svg/?label=resolved+issues&show_trend=true)](https://deepsource.io/gh/Cyb3r-Jak3/api_server/?ref=repository-badge)
 
