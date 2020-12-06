@@ -1,4 +1,4 @@
-name: Docker Release
+name: Docker
 
 on:
   push:
@@ -24,6 +24,6 @@ jobs:
         run: docker inspect ghcr.io/cyb3r-jak3/api_server:latest 
 
       - name: Push
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && ${GITHUB_REF##*/} == "master" }}
         run: docker push ghcr.io/cyb3r-jak3/api_server:latest 
   
