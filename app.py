@@ -1,13 +1,15 @@
 """Main Web runner thing."""
 import io
 import os
+import tempfile
 from flask import Flask, request, redirect, send_file
 from flask_cors import CORS
 import gnupg
 import requests
 
 
-gpg = gnupg.GPG(gnupghome="/tmp")
+tmpdir = tempfile.mkdtemp()
+gpg = gnupg.GPG(gnupghome=tmpdir)
 
 if not os.path.exists("resume.pdf"):
     r = requests.get("https://www.jwhite.network/resumes/JacobWhiteResume.pdf")
