@@ -1,11 +1,12 @@
 """Main Web runner thing."""
 import io
 import os
+import tempfile
 from flask import Flask, request, redirect, send_file
 from flask_cors import CORS
 import gnupg
 import requests
-import tempfile
+
 
 tmpdir = tempfile.mkdtemp()
 gpg = gnupg.GPG(gnupghome=tmpdir)
