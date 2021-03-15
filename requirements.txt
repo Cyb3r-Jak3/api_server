@@ -1,4 +1,4 @@
-python-gnupg == 0.4.6
+python-gnupg == 0.4.7
 requests == 2.25.1
 flask == 1.1.2
 gunicorn == 20.0.4
