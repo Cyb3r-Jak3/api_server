@@ -24,6 +24,9 @@ def get_resume():
             new_resume.write(req.content)
 
 
+get_resume()
+
+
 def encrypt_resume(file):
     """Encrypts my resumse with the given key."""
     imported_key = gpg.import_keys(file.read()).fingerprints[0]
