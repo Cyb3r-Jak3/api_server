@@ -1,6 +1,6 @@
 """Tests for api server."""
-import requests
 import io
+import requests
 from app import app
 
 
@@ -36,3 +36,43 @@ def test_encrypt_resume():
         )
 
     assert response.status_code == 200
+
+
+def test_git_user():
+    """Tests git user endpoint"""
+    tester = app.test_client()
+    response = tester.get(
+        "/git/user"
+    )
+    assert response.status_code == 200
+    assert len(response.json) == 30
+
+
+def test_repo():
+    """Tests git repo endpoint"""
+    tester = app.test_client()
+    response = tester.get(
+        "/git/repos"
+    )
+    assert response.status_code == 200
+    assert len(response.json) == 30
+
+
+def test_repo_list():
+    """Tests git repo endpoint"""
+    tester = app.test_client()
+    response = tester.get(
+        "/git/repos/list"
+    )
+    assert response.status_code == 200
+    assert len(response.json) == 30
+
+
+def test_404():
+    """Tests 404 handling"""
+    tester = app.test_client()
+    response = tester.get(
+        "/404"
+    )
+    assert response.status_code == 404
+    assert response.json["Error"] == "Route does not exist"

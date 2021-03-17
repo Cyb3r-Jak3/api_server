@@ -3,7 +3,8 @@ __pycache__/
 .devcontainer
 .vscode
 .git
-resume.pdf
+*.pdf
+*.asc
 .github
 README.md
 LICENSE

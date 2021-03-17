@@ -132,4 +132,5 @@ cython_debug/
 
 .vscode/
 
-resume.pdf
+*.pdf
+*.asc
