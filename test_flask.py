@@ -1,7 +1,8 @@
 """Tests for api server."""
 import io
+import os
 import requests
-from app import app
+from app import app, get_resume
 
 
 def test_index_redirect():
@@ -22,6 +23,8 @@ def test_encrypt_resume_misc():
 
 def test_encrypt_resume():
     """Tests main section of the encrypt resume EP."""
+    if not os.path.exists("resume.pdf"):
+        get_resume()
     tester = app.test_client()
     download = requests.get(
             "https://portfolio.jwhite.network/keys/WebsitePublic.asc"
