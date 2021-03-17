@@ -23,20 +23,11 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements-dev.txt
 
-    - name: Lint with Flake8
-      run: flake8 app.py --count --show-source --statistics
-
-    - name: Lint with PyLint
-      run: pylint app.py
-
-    - name: Lint with Bandit
-      run: bandit app.py
-
-    - name: Lint with Python Black
-      run: black --check app.py --line-length 80 --diff
+    - name: Lint with Black, Pylint, Flake8, and Bandit
+      run: make lint
 
     - name: Run Pytests
-      run: py.test --cov app test_flask.py -vv
+      run: make test
 
     - name: Report results to DeepSource
       run: |
