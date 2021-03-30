@@ -1,10 +1,10 @@
 version = 1
 
-test_patterns = ["test_*"]
+test_patterns = ["test_**"]
 
 exclude_patterns = [
-    ".github",
-    ".devcontainer"
+    ".github/**",
+    ".devcontainer/**"
 ]
 
 [[analyzers]]
@@ -24,3 +24,7 @@ enabled = true
 
   [analyzers.meta]
   dockerfile_paths = ["Dockerfile"]
+
+[[analyzers]]
+name = "secrets"
+enabled = true
